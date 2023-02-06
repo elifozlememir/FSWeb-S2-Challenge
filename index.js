@@ -75,7 +75,7 @@ function cumleKur(birinci, ikinci="", ucuncu="", dorduncu="", besinci=""){
 
 /* (Oto test yok) cumleKur fonksiyonuna yalnızca 1 parametre göndererek "Hello World!" stringini elde edin, sonucu konsolde gözlemleyin */
 
-
+//console.log(cumleKur("Hello World!"))
 
 
 /* (Oto test yok) cumleKur fonksiyonuna yalnızca 2 parametre göndererek "Hello World!" stringini elde edin, sonucu konsolde gözlemleyin */
@@ -85,8 +85,8 @@ function cumleKur(birinci, ikinci="", ucuncu="", dorduncu="", besinci=""){
 
 /* (Oto test var) cumleKur fonksiyonuna 5 parametre göndererek "Ben iyi bir yazılımcı olacağım!" stringini elde edin, sonucu `bircumle` değişkenine atayın ve konsolde gözlemleyin */
 var bircumle;
+bircumle=cumleKur("Ben ","iyi ","bir ","yazılımcı ","olacağım!");
 
-/* kodlar buraya */
 
 
 
@@ -104,8 +104,11 @@ var bircumle;
 	*/
 	
 
-function cumlelereDonustur(/* kodlar buraya */ ){
-	/* kodlar buraya */
+function cumlelereDonustur(arr,ayrc="," ){
+	let newarr=[];
+	arr.map(element=>{let text=element.join(ayrc);
+	newarr.push(text);})
+	return newarr;
 }
 
 
@@ -120,8 +123,9 @@ function cumlelereDonustur(/* kodlar buraya */ ){
 			6. Oluşturulan paragraf döndürülecek
 	*/
 	
-function paragrafOlustur(/* kodlar buraya */ ){
-	/* kodlar buraya */ 
+function paragrafOlustur(arr,cmle,donstr){
+	let newarr=donstr(arr," ");
+	return cmle(newarr[1],newarr[3],newarr[5],newarr[7],newarr[9])
 }
 
 
@@ -129,18 +133,16 @@ function paragrafOlustur(/* kodlar buraya */ ){
 		Yukarıda isimleri sebzeler ve meyveler olan 2 dizi bulunmaktadır. Bu dizileri kullanarak aşağıdaki görevleri tamamlayın.
 			3a. meyveler dizisinin ilk ve son elemanlarını diziden çıkartın. (.pop ve .shift metodlarını kullanın)
  */
-//3a çözümü
-/* kodlar buraya */
-
-
-
+meyveler.pop();
+meyveler.shift();
 
 
  
 /* 			3b.  Bir tavşan ve bir kirpi arkadaşlar sebzeler dizimizin peşine düştü. Tavşan => 🐇 , Kirpi=> 🦔 , Tavşanla kirpi sebzeleri ele geçirmek için bir plan kurdular. Tavşan diziye önden saldıracak, kirpi ise arkalarından dolaşacak. Varsayalım ki arkadaşların planları başarılı oldu. Tavşanı dizinin ilk elemanına 🐇, Kirpiyi dizinin son elemanına ekleyin 🦔 
 */
 //3b çözümü
-/* kodlar buraya */
+sebzeler.splice(0,0,"🐇");
+sebzeler.splice(sebzeler.length,0,"🦔");
 
 
 
@@ -155,13 +157,14 @@ function paragrafOlustur(/* kodlar buraya */ ){
 /* kodlar buraya */
 
 var manav;
-
+manav=meyveler.concat(sebzeler);
 
 
 
 
 /* 	GÖREV 4:
-		Yeni kurulmuş bir mesajlaşma startup firması atılan mesajları emojilerle zenginleştirmek istiyor. Bunun için emojiler adında bir nesne tanımlamışlar. Kullanıcının gönderdiği mesaj stringi içinde emojiler nesnesinin anahtarı(index) bulunuyorsa, bu işareti otomatik olarak anahtara ait değerde tanımlanmış emoji ile değiştirecek bir fonksiyon geliştirmek istiyorlar. ÖRNEK: Mesaj içinde ":)" sembolü bulunursa mesajı alan kişi bu sembolü "🙂" olarak görecek. Burdan yola çıkarak emojileriDonustur fonksiyonuna aşağıdakileri uygulayın.
+		Yeni kurulmuş bir mesajlaşma startup firması atılan mesajları emojilerle zenginleştirmek istiyor. Bunun için emojiler adında bir nesne tanımlamışlar. Kullanıcının gönderdiği mesaj stringi içinde emojiler nesnesinin anahtarı(index) bulunuyorsa, bu işareti otomatik olarak anahtara ait değerde tanımlanmış emoji ile değiştirecek bir fonksiyon geliştirmek istiyorlar. 
+		ÖRNEK: Mesaj içinde ":)" sembolü bulunursa mesajı alan kişi bu sembolü "🙂" olarak görecek. Burdan yola çıkarak emojileriDonustur fonksiyonuna aşağıdakileri uygulayın.
 			1. Atılan mesaj stringi fonksiyonun birinci parametresi olarak alınacak
 			2. emojiler nesnesi fonksiyonun ikinci parametresi olarak alınacak
 			3. mesaj stringi emoji nesnesinde tanımlı olan tüm sembolleri istenilen değere dönüştürecek (.replaceAll metodu kullanılacak)
@@ -170,11 +173,21 @@ var manav;
 			4. elde edilen string döndürülecek
  */
 
-function emojileriDonustur(/* kodlar buraya */){
-/* kodlar buraya */
-
-}
-
+	function emojileriDonustur(text,emj){
+	let myArray = text.split(" ");
+	let emjkey=Object.getOwnPropertyNames(emj);
+			  
+		for (let i in emjkey ){
+				
+			if(myArray.includes(emjkey[i].toUpperCase()) || myArray.includes(emjkey[i].toLowerCase())){
+				
+				text=text.replaceAll(emjkey[i].toUpperCase(),emj[emjkey[i]]);
+				text=text.replaceAll(emjkey[i].toLowerCase(),emj[emjkey[i]]);
+				}
+		}
+	return text;
+				
+	}
 
 
 /*  Bu satırın aşağısındaki kodları lütfen değiştirmeyin  */
